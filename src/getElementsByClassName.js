@@ -9,10 +9,9 @@ var getElementsByClassName = function(className){
   
   //Checks the element [el] and all it's descendants for
   //the given className (uses recursion)
-  
-  //Probably don't need the [result] variable to be passed, but
-  //easiest this way...can change later if necessary...
-  function getDescendantsByClassName(className, el, result) {
+  function getDescendantsByClassName(className, el) {
+    
+    var result = [];
     
     //checks current element for class name
     for (var i=0; i<el.classList.length; i++) {
@@ -27,13 +26,13 @@ var getElementsByClassName = function(className){
     for (var i=0; i<el.childNodes.length; i++) {
       //If a text node, does nothing, since these have no classes and no descendants (I think)
       if (el.childNodes[i].nodeType !== 3) {
-        result = getDescendantsByClassName(className, el.childNodes[i], result);
+        result = result.concat(getDescendantsByClassName(className, el.childNodes[i]));
       }
     }
     
     //returns result
     return result;
   }
-  return getDescendantsByClassName(className, document.body, []);
+  return getDescendantsByClassName(className, document.body);
   
 };
