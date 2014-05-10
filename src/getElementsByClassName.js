@@ -15,8 +15,7 @@ var getElementsByClassName = function(className){
     
     //checks current element for class name
     for (var i=0; i<el.classList.length; i++) {
-      if (el.classList[i] === className) {
-        console.log("TRUE!");
+      if (el.classList[i] === className) {;
         result.push(el);
         break;
       }
